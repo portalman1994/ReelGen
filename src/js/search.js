@@ -18,7 +18,7 @@ async function findUPCInJSON(filePath, searchTerm, searchColumn, upcColumn, titl
               if (title.includes(search)) {
                   if (item[upcColumn] && item[titleColumn] && item[imageColumn]) {
                       const upcValue = String(item[upcColumn]).trim();
-                      const imageFile = "images/" + String(imagesitem[imageColumn]) + ".webp";
+                      const imageFile = "images/" + String(item[imageColumn]) + ".webp";
                       if (!upcValue.toLowerCase().includes("scraping failed")) {
                           results.push(upcValue);
                           titles.push(String(item[titleColumn]).trim());
