@@ -51,7 +51,7 @@ function displayBarcodes(upcs, titles, images) {
       movieContainer.appendChild(icon);
 
       const posterImg = document.createElement("img");
-      posterImg.src = `images/${images[index]}`;
+      posterImg.src = `./images/${images[index]}`;
       posterImg.alt = titles[index] + " Poster";
       posterImg.classList.add("movie-poster");
 
