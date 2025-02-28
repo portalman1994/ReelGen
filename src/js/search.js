@@ -1,37 +1,36 @@
-async function findUPCInCSV(csvFilePath, searchTerm, searchColumnIndex, upcColumnIndex, titleColumnIndex, imageColumnIndex) {
+async function findUPCInJSON(filePath, searchTerm, searchColumn, upcColumn, titleColumn, imageColumn) {
   try {
-    const response = await fetch(csvFilePath);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const csvText = await response.text();
-    const rows = csvText.split('\n');
-    const results = [];
-    const titles = [];
-    const images = [];
-
-    for (const row of rows) {
-      const columns = parseCSVRow(row);
-      if (columns[searchColumnIndex]) {
-        const title = columns[searchColumnIndex].trim().toLowerCase();
-        const search = searchTerm.trim().toLowerCase();
-        const image = `${columns[imageColumnIndex]}.jpg`
-        if (title.includes(search)) {
-          if (columns[upcColumnIndex] && columns[titleColumnIndex]) {
-            const upcValue = columns[upcColumnIndex].trim();
-            if (!upcValue.toLowerCase().includes("scraping failed")) {
-              results.push(columns[upcColumnIndex].trim());
-              titles.push(columns[titleColumnIndex].trim());
-              images.push(image);
-            }
-          }
-        }
+      const response = await fetch(filePath);
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
       }
-    }
-    return { upcs: results, titles: titles, images: images };
+      const jsonData = await response.json(); // Parse JSON
+
+      const results = [];
+      const titles = [];
+      const images = [];
+
+      for (const item of jsonData) {
+          if (item[searchColumn]) {
+              const title = String(item[searchColumn]).trim().toLowerCase();
+              const search = searchTerm.trim().toLowerCase();
+
+              if (title.includes(search)) {
+                  if (item[upcColumn] && item[titleColumn] && item[imageColumn]) {
+                      const upcValue = String(item[upcColumn]).trim();
+                      if (!upcValue.toLowerCase().includes("scraping failed")) {
+                          results.push(upcValue);
+                          titles.push(String(item[titleColumn]).trim());
+                          images.push(`${item[imageColumn]}.webp`); // Construct image path
+                      }
+                  }
+              }
+          }
+      }
+      return { upcs: results, titles: titles, images: images };
   } catch (error) {
-    console.error('Error reading CSV:', error);
-    return null;
+      console.error('Error reading JSON:', error);
+      return null;
   }
 }
 
@@ -57,7 +56,7 @@ function displayBarcodes(upcs, titles, images) {
       posterImg.classList.add("movie-poster");
 
       posterImg.onerror = function () {
-        posterImg.src = "images/backup.jpg"; // Replace with your backup image path
+        posterImg.src = "images/backup.webp"; // Replace with your backup image path
         posterImg.alt = "Backup Poster";
       };
 
@@ -90,11 +89,11 @@ function displayBarcodes(upcs, titles, images) {
 }
 
 async function search() {
-  const csvFilePath = "src/data/upc.csv";
-  const searchColumnIndex = 1;
-  const upcColumnIndex = 3;
-  const titleColumnIndex = 1;
-  const imageColumnIndex = 0;
+  const FilePath = "src/data/upc.json";
+  const searchColumnKey = "Title"; // Replace with your JSON keys
+  const upcColumnKey = "upc";
+  const titleColumnKey = "Title";
+  const imageColumnKey = "id";
 
   document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.querySelector('.search-input');
@@ -109,7 +108,7 @@ async function search() {
         document.getElementById('full-screen-barcode-container').style.display = "none";
 
 
-        const results = await findUPCInCSV(csvFilePath, searchTerm, searchColumnIndex, upcColumnIndex, titleColumnIndex, imageColumnIndex);
+        const results = await findUPCInJSON(FilePath, searchTerm, searchColumnKey, upcColumnKey, titleColumnKey, imageColumnKey);
 
         if (results && results.upcs.length > 0) {
           results.upcs.forEach(upc => {
@@ -117,7 +116,7 @@ async function search() {
           });
           displayBarcodes(results.upcs, results.titles, results.images);
         } else {
-          document.getElementById('movie-list').textContent = `"${searchTerm}" not found in CSV.`;
+          document.getElementById('movie-list').textContent = `"${searchTerm}" not found in JSON.`;
         }
       });
 
@@ -129,7 +128,7 @@ async function search() {
           document.getElementById('full-screen-barcode-container').style.display = "none";
 
 
-          const results = await findUPCInCSV(csvFilePath, searchTerm, searchColumnIndex, upcColumnIndex, titleColumnIndex, imageColumnIndex);
+          const results = await findUPCInJSON(FilePath, searchTerm, searchColumnKey, upcColumnKey, titleColumnKey, imageColumnKey);
 
           if (results && results.upcs.length > 0) {
             results.upcs.forEach(upc => {
@@ -137,7 +136,7 @@ async function search() {
             });
             displayBarcodes(results.upcs, results.titles, results.images);
           } else {
-            document.getElementById('movie-list').textContent = `"${searchTerm}" not found in CSV.`;
+            document.getElementById('movie-list').textContent = `"${searchTerm}" not found in JSON.`;
           }
         }
       });
@@ -152,26 +151,6 @@ async function search() {
       console.error('Search elements not found!');
     }
   });
-}
-
-function parseCSVRow(row) {
-  const columns = [];
-  let currentValue = '';
-  let inQuotes = false;
-
-  for (let char of row) {
-    if (char === '"') {
-      inQuotes = !inQuotes; // Toggle inQuotes state
-    } else if (char === ',' && !inQuotes) {
-      columns.push(currentValue.trim());
-      currentValue = '';
-    } else {
-      currentValue += char;
-    }
-  }
-  columns.push(currentValue.trim()); // Add the last column
-
-  return columns;
 }
 
 search();
