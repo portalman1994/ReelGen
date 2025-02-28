@@ -18,10 +18,11 @@ async function findUPCInJSON(filePath, searchTerm, searchColumn, upcColumn, titl
               if (title.includes(search)) {
                   if (item[upcColumn] && item[titleColumn] && item[imageColumn]) {
                       const upcValue = String(item[upcColumn]).trim();
+                      const imageFile = "images/" + String(imagesitem[imageColumn]) + ".webp";
                       if (!upcValue.toLowerCase().includes("scraping failed")) {
                           results.push(upcValue);
                           titles.push(String(item[titleColumn]).trim());
-                          images.push(`${item[imageColumn]}.webp`); // Construct image path
+                          images.push(imageFile); // Construct image path
                       }
                   }
               }
@@ -51,7 +52,7 @@ function displayBarcodes(upcs, titles, images) {
       movieContainer.appendChild(icon);
 
       const posterImg = document.createElement("img");
-      posterImg.src = `./images/${images[index]}`;
+      posterImg.src = images[index];
       posterImg.alt = titles[index] + " Poster";
       posterImg.classList.add("movie-poster");
 
