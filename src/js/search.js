@@ -93,7 +93,7 @@ async function search() {
   const csvFilePath = "src/data/upc.csv";
   const searchColumnIndex = 1;
   const upcColumnIndex = 3;
-  const titleColumnIndex = 1; //add title column index
+  const titleColumnIndex = 1;
   const imageColumnIndex = 0;
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -106,6 +106,8 @@ async function search() {
         const searchTerm = searchInput.value;
 
         document.getElementById('movie-list').innerHTML = "";
+        document.getElementById('full-screen-barcode-container').style.display = "none";
+
 
         const results = await findUPCInCSV(csvFilePath, searchTerm, searchColumnIndex, upcColumnIndex, titleColumnIndex, imageColumnIndex);
 
@@ -113,7 +115,7 @@ async function search() {
           results.upcs.forEach(upc => {
             console.log(`UPC: ${upc}`);
           });
-          displayBarcodes(results.upcs, results.titles, results.images); //pass in the titles.
+          displayBarcodes(results.upcs, results.titles, results.images);
         } else {
           document.getElementById('movie-list').textContent = `"${searchTerm}" not found in CSV.`;
         }
@@ -124,6 +126,8 @@ async function search() {
           const searchTerm = searchInput.value;
 
           document.getElementById('movie-list').innerHTML = "";
+          document.getElementById('full-screen-barcode-container').style.display = "none";
+
 
           const results = await findUPCInCSV(csvFilePath, searchTerm, searchColumnIndex, upcColumnIndex, titleColumnIndex, imageColumnIndex);
 
