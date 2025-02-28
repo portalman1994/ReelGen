@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ReelGen</title>
+    <link rel="stylesheet" href="src/css/all.min.css">
+    <link rel="stylesheet" href="src/css/styles.css">
+    <script src="src/js/JsBarcode.all.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-text"><div class="logo fa-solid fa-film"></div>ReelGen</div>
+        <div class="search-container">
+            <input type="text" class="search-input" required>
+            <button class="clear-button fa-solid fa-xmark" type="button"></button>
+            <button class="search-button fa-solid fa-magnifying-glass" type="button"></button>
+        </div>
+    </header>
+    <div id="movie-list"></div>
+    <div id="full-screen-barcode-container">
+        <img id="full-screen-barcode" src="" alt="Full Screen Barcode">
+    </div>
+    <script src="src/js/search.js"></script>
+</body>
+
+</html>
