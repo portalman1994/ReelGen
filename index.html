@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="utf-8">
     <title>ReelGen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/css/all.min.css">
     <link rel="stylesheet" href="src/css/styles.css">
     <script src="src/js/JsBarcode.all.min.js"></script>
@@ -10,11 +12,12 @@
 
 <body>
     <header>
-        <div class="header-text"><div class="logo fa-solid fa-film"></div>ReelGen</div>
+        <div class="header-text"><div class="logo fa-solid fa-film"></div></div>
         <div class="search-container">
-            <input type="text" class="search-input" required>
-            <button class="clear-button fa-solid fa-xmark" type="button"></button>
-            <button class="search-button fa-solid fa-magnifying-glass" type="button"></button>
+            <label for="search" class="visually-hidden">Search:</label>
+            <input type="text" class="search-input" id="search" name="Search" required="" aria-label="Search">
+            <button class="clear-button fa-solid fa-xmark" type="button" aria-label="Clear search"></button>
+            <button class="search-button fa-solid fa-magnifying-glass" type="button" aria-label="Initiate search"></button>
         </div>
     </header>
     <div id="movie-list"></div>
