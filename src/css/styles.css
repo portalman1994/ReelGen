@@ -1,3 +1,7 @@
+body {
+    background-color: #282828; 
+  }
+
 header {
     background-color: black;
     color: white;
@@ -23,7 +27,7 @@ header {
     display: flex;
     margin-left: 10px;
     align-items: center;
-    border: 2px solid;
+    border: 2px solid #555;
     border-radius: 20px;
     padding: 5px;
     color: white;
@@ -84,17 +88,29 @@ header {
 }
 
 .movie-poster {
-    max-width: 300px;
     height: auto;
     display: block;
     margin: 0 auto 10px;
     border-radius: 10px;
     overflow: hidden;
-    transition: filter 0.3s ease;
     position: relative;
+    background-size: cover; 
+    background-position: center; 
+    transition: outline 0.3s ease; 
 }
 
-.movie-container:hover .movie-poster {
+.movie-poster:hover {
+    outline: 2px solid white;
+}
+
+.movie-poster img {
+    transition: filter 0.3s ease;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.movie-poster:hover img {
     filter: brightness(0.4);
 }
 
@@ -103,16 +119,14 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    width: 65%;
-    height: 65%;
-    border: 4px solid white;
-    border-radius: 10px;
+    width: 100%;
+    border: 2px solid white;
+    height: 100%;
     opacity: 0;
     transition: opacity 0.3s ease;
-    pointer-events: none;
 }
 
-.movie-container:hover .movie-poster::before {
+.movie-poster:hover::before {
     opacity: 1;
 }
 
@@ -126,17 +140,31 @@ header {
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
-    z-index: 10;
 }
 
-.movie-container:hover .hover-icon {
+.movie-poster:hover .hover-icon {
     opacity: 1;
 }
 
 .movie-title {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: normal;
+    font-weight: 500;
+    color: whitesmoke;
+    padding-left: 1px;
     margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.movie-year {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+    color: lightslategray;
+    padding-left: 1px;
+    text-align: left;
 }
 
 #full-screen-barcode-container {
