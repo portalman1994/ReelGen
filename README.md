@@ -1,2 +1,2 @@
 # ReelGen
-Allows individuals to view UPC barcodes associated with whatever movie they searched for.
+Movie barcode generator. Scan the barcode with Fandango D2D app. $2 Movies!
