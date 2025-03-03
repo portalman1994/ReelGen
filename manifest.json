@@ -1,7 +1,7 @@
 {
     "name": "ReelGen: Movie Barcode Generator",
     "short_name": "ReelGen",
-    "id": "/",
+    "id": "ReelGen",
     "icons": [
         {
             "src": "/src/icons/android-icon-192x192.png",
@@ -34,7 +34,7 @@
     "lang": "en",
     "description": "Allows individuals to view UPC barcodes associated with whatever movie they searched for.",
     "orientation": "landscape",
-    "start_url": "/",
+    "start_url": "ReelGen",
     "screenshots": [
     {
       "src": "/src/screenshots/screenshot_0.png",
