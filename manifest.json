@@ -1,33 +1,53 @@
 {
-    "name": "ReelGen",
+    "name": "ReelGen: Movie Barcode Generator",
+    "short_name": "ReelGen",
+    "id": "/",
     "icons": [
         {
-            "src": "android-chrome-192x192.png",
+            "src": "/src/icons/android-icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "android-chrome-512x512.png",
-            "sizes": "512x512",
+            "src": "/src/icons/ms-icon-310x310.png",
+            "sizes": "310x310",
             "type": "image/png"
         },
         {
-            "src": "apple-touch-icon.png",
+            "src": "/src/icons/apple-icon-180x180.png",
             "sizes": "180x180",
             "type": "image/png"
         },
         {
-            "src": "favicon-32x32.png",
+            "src": "/src/icons/favicon-32x32.png",
             "sizes": "32x32",
             "type": "image/png"
         },
         {
-            "src": "favicon-16x16.png",
+            "src": "/src/icons/favicon-16x16.png",
             "sizes": "16x16",
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone"
+    "display": "standalone",
+    "theme_color": "#282828",
+    "lang": "en",
+    "description": "Allows individuals to view UPC barcodes associated with whatever movie they searched for.",
+    "orientation": "landscape",
+    "start_url": "/",
+    "screenshots": [
+    {
+      "src": "/src/screenshots/screenshot_0.png",
+      "sizes": "1366x687",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Movie Search"
+    },
+    {
+      "src": "/src/screenshots/screenshot_1.png",
+      "sizes": "1366x683",
+      "type": "image/png",
+      "label": "Movie Barcode"
+    }
+  ]
 }
