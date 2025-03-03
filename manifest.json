@@ -4,27 +4,27 @@
     "id": "/ReelGen",
     "icons": [
         {
-            "src": "/src/icons/android-icon-192x192.png",
+            "src": "/ReelGen/src/icons/android-icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/src/icons/ms-icon-310x310.png",
+            "src": "/ReelGen/src/icons/ms-icon-310x310.png",
             "sizes": "310x310",
             "type": "image/png"
         },
         {
-            "src": "/src/icons/apple-icon-180x180.png",
+            "src": "/ReelGen/src/icons/apple-icon-180x180.png",
             "sizes": "180x180",
             "type": "image/png"
         },
         {
-            "src": "/src/icons/favicon-32x32.png",
+            "src": "/ReelGen/src/icons/favicon-32x32.png",
             "sizes": "32x32",
             "type": "image/png"
         },
         {
-            "src": "/src/icons/favicon-16x16.png",
+            "src": "/ReelGen/src/icons/favicon-16x16.png",
             "sizes": "16x16",
             "type": "image/png"
         }
@@ -37,14 +37,14 @@
     "start_url": "/ReelGen",
     "screenshots": [
     {
-      "src": "/src/screenshots/screenshot_0.png",
+      "src": "/ReelGen/src/screenshots/screenshot_0.png",
       "sizes": "1366x687",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Movie Search"
     },
     {
-      "src": "/src/screenshots/screenshot_1.png",
+      "src": "/ReelGen/src/screenshots/screenshot_1.png",
       "sizes": "1366x683",
       "type": "image/png",
       "label": "Movie Barcode"
